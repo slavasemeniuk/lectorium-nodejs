@@ -1,4 +1,6 @@
 const express = require('express')
+const validate = require('./../middlewares/validator-middleware')
+const validatorSchemas = require('../validators/users/validators')
 
 const router = express.Router()
 
@@ -10,7 +12,7 @@ router.get('/users', (req, res, next) => {
   //   }).catch(next)
 })
 
-router.post('/users', (req, res, next) => {
+router.post('/users', validate(validatorSchemas.createUser), (req, res, next) => {
   // service.create(req.body).then( (item) => {
   //   res.status(200).send(item)
   // }).catch(next)
